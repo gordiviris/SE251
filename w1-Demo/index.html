@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Week 1">
+    <meta name="author" content="Kevin Andrade"> 
+    <title>SE251 | W1</title>
+</head>
+<body>
+    <script>
+        fetch(`https://www.fishwatch.gov/api/species`)
+        .then(response => response.json())
+        .then(function(data){
+            
+            console.log(data)
+            var body = document.querySelector(`body`);
+            var msg = ``;
+
+            for(let i=0; i < data.length; i++)
+            {
+                if(i%2==0){
+                    msg+= `<div style="background-color:#bbb">`
+                }
+                else{
+                    msg+= `<div style="background-color:white">`
+                }
+                
+                for(index in data[i])
+                {
+                    if(data[i][index] != null && typeof data[i][index]===`string`)
+                    msg+= `${data[i][index]}<br>`
+                }
+                msg+=`<hr>`
+            }
+            //msg += `<img src="${data[1][`Species Illustration Photo`][`src`]}">`
+
+            body.innerHTML = msg;
+            
+        });
+    </script>
+</body>
+    <script>
+    </script>
+</html>

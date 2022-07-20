@@ -9,28 +9,136 @@
     <title>SE251 | W1</title>
 </head>
 <body>
-    <script type="text/javascript">
-        alert("Hello world!");
+    <script>
+        fetch(`https://www.fishwatch.gov/api/species`)
+        .then(response => response.json())
+        .then(function(data){
+            
+            console.log(data)
+        
+            //W1 Variables
+            //==============
+            var a = `str`;
+            var b = 123;
+            var c = true;
+            console.log(`a: ${typeof a}\nb: ${typeof b}\nc: ${typeof c}`)
+
+            //W1 functions
+            //==============
+            function add(a, b)
+            {
+                var c = a+b;
+                return c;
+            }
+            console.log(`5 + 2= ${add(5, 2)}`)
+
+            //W1 Loops and Arrays
+            //====================
+            let numbers = []
+            for(i=0; i<100; i++){
+                numbers.push(i+1)
+            }
+            console.log(numbers)
+
+            //W1 Fizz Buzz
+            //==============
+            let fb = []
+            for(i=0; i<100; i++){
+                x= i+1;
+                if(x%3==0 && x%2==0){
+                    fb.push(`Fizz Buzz`)
+                }
+                else if(x%3==0){
+                    fb.push(`Buzz`)
+                }
+                else if(x%2==0){
+                    fb.push(`Fizz`)
+                }
+                else{
+                    fb.push(x)
+                }
+                
+            }
+            console.log(fb)
+
+            //W1 Objects
+            //============
+            fb2 = []
+            for (i=0; i<100; i++){
+                x= i+1
+                if(x%3==0 && x%2==0){
+                    fizzbuzz = {index: x, label: `Fizz Buzz`}
+                }
+                else if(x%3==0){
+                    fizzbuzz = {index: x, label: `Buzz`}
+                }
+                else if(x%2==0){
+                    fizzbuzz = {index: x, label: `Fizz`}
+                }
+                else{
+                    fizzbuzz = {index: x}
+                }
+                fb2.push(fizzbuzz)
+            }
+            console.log(fb2)
+            
+            //W1 Object Properties
+            //======================
+
+            fb3 = []
+            for (i=0; i<100; i++){
+                x= i+1
+                if(x%3==0 && x%2==0){
+                    fizzbuzz = {index: x, label: `Fizz Buzz`}
+                }
+                else if(x%3==0){
+                    fizzbuzz = {index: x, label: `Buzz`}
+                }
+                else if(x%2==0){
+                    fizzbuzz = {index: x, label: `Fizz`}
+                }
+                else{
+                    fizzbuzz = {index: x}
+                }
+                fb3.push(fizzbuzz)
+            }
+
+            for(i=0; i<100; i++){
+                if (fb3[i][`label`]===`Fizz`)
+                {
+                    console.log(fb3[i])
+                }
+                else{}
+            }
+
+            //W1 Using For Loops
+            //====================
+            fb4 = []
+            for (i=0; i<100; i++){
+                x= i+1
+                if(x%3==0 && x%2==0){
+                    fizzbuzz = {index: x, label: `Fizz Buzz`}
+                }
+                else if(x%3==0){
+                    fizzbuzz = {index: x, label: `Buzz`}
+                }
+                else if(x%2==0){
+                    fizzbuzz = {index: x, label: `Fizz`}
+                }
+                else{
+                    fizzbuzz = {index: x}
+                }
+                fb4.push(fizzbuzz)
+                
+                for(property in fizzbuzz){
+                    console.log(fizzbuzz[property])
+                }
+            }
+
+
+        });
     </script>
 </body>
     <script>
-        var a = `str`;
-        var b = 123;
-        var c = true;
-        console.log(`a: ${typeof a}\nb: ${typeof b}\nc: ${typeof c}`)
-
-        function add(a, b)
-        {
-            return a+b;
-        }
-        console.log(`5 + 2= ${add(5, 2)}`)
-
-        function array(a){
-            var list1=[
-                for(let i=0; i<=a; i++){
-
-                }
-            ]
-        }
     </script>
 </html>
