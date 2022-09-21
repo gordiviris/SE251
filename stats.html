@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stats</title>
+    <style>
+        body{
+            display:flex;
+            justify-content: center;
+        }
+        h2{
+            border-bottom:1px solid black;
+        }
+        .pokemon{
+            box-sizing: border-box;
+            padding:10px;
+            border:1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        
+    </main>
+    <script>
+        /*---Instructions-----
+
+            Description: You will use AJAX to get information about two pokemon and display it on the page. 
+
+            Step 1: 
+                1. Look at the API at https://pokeapi.co/
+                2. Figure out how to get a list of the first two pokemon
+                3. Fetch the list in this program.
+                4. Log the returned object in the console.
+
+                https://pokeapi.co/api/v2/{endpoint}/
+
+            
+            Step 2:
+                 Once you have the data:
+                 1. Fetch the specifics for each pokemon. 
+                 NOTE: this should be done using variables. No data should be hard coded.
+                 HINT: The URL values are in the returned object's results Array.
+                 2. Log the new object's in the console
+
+            Step 3: 
+                Once you get a pokemons data display the following on the page:
+                1.In a heading one display: 
+                    a. It's name
+                    b. The pokemon's default front sprite.
+                2.height in a paragraph
+                3.weight in a paragraph
+                9.Within a paragraph display the name the third game in the pokemon's game indices list.
+                4.<h2>Abilities</h2>
+                    5.an unordered list of its abilities
+                6.<h2>Types</h2>
+                    7.an unordered list of its types 
+            --------------*/
+
+        var body = document.querySelector('body')
+        
+        function displayPoke(num){
+
+            fetch('https://pokeapi.co/api/v2/pokemon/' + String(num))
+            .then((response) => response.json())
+            .then((data) => {
+                
+
+                if(num == ""){
+                    var fsList = [data["results"][0], data["results"][1]]
+                    console.log(fsList, "step 1 output") //list of both pokemon
+                }
+                else
+                {
+                    console.log(data, "step 2 output") //detailed list of bulba/ivy
+                    
+                    var html = "<div class='pokemon'><h1>"
+                    html += data["species"]["name"]
+                    html += "<img src='"
+                    html += data["sprites"]["front_default"]
+                    html += "' alt='"
+                    html += data["species"]["name"]
+                    html += "'></h1>"
+                    
+                    html += "<p>height: "
+                    html += data["height"]
+                    html += "</p>"
+
+                    html += "<p>weight: "
+                    html += data["weight"]
+                    html += "</p>" 
+
+                    html += "<p>pokemon "
+                    html += data["game_indices"][2]["version"]["name"]
+                    html += "</p>"
+
+                    html += "<h2>Abilities</h2>"
+                    html += "<ul>"
+                    
+                    for (let i = 0; i < data["abilities"].length; i++){
+                        html += "<li>"
+                        html += data["abilities"][i]["ability"]["name"]
+                        html += "</li>"
+                    }
+                    html += "</ul>"
+
+                    html += "<h2>Types</h2>"
+                    html += "<ul>"
+
+                    for (let i = 0; i < data["types"].length; i++){
+                        html += "<li>"
+                        html += data["types"][i]["type"]["name"]
+                        html += "</li>"
+                    }
+                    html += "</ul>"
+                    
+                    
+                    html += "</div>"
+                    body.innerHTML += html
+                }
+                
+
+
+            });
+
+        }
+
+        displayPoke("")
+        displayPoke(1)
+        displayPoke(2)
+
+
+    </script>
+</body>
+</html>

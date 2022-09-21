@@ -57,18 +57,19 @@
 	for (i = 0; i < reviews.length; i++)
 	{
 		str += "<tr>"
-		
 		for(index in reviews[i])
 		{
 			if (index != "imageName" && index != "gameId")
 			{
 				str += "<td>"
+
+
 				if (index == "gameTitle")
 				{
 					str += "<a class='reviews' data-img='" + reviews[i]["imageName"] + "'>"
 				}
-
 				str += reviews[i][index]
+
 
 				if(index == "gameTitle")
 				{
@@ -76,16 +77,19 @@
 				}
 
 				str +=  " </td>"
+
 			}
+
 		}
+
+
+
 		str += "</tr>"
 	}
+
 	tbody.innerHTML = str
-
 	img = document.querySelectorAll(`.reviews`)
-
 	console.log(img)
-
 
 	for(let i = 0; i < img.length; i++)
 	{
@@ -97,5 +101,4 @@
 		document.querySelector(`#gameImage`).src = "images/" + this.dataset.img
 		document.querySelector(`#gameTitle`).innerText = this.text
 	}
-	
 </script>

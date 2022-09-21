@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Grid</title>
+</head>
+<body>
+    <input id="num" type="text" value="" id="num"/>
+    <input type="button" value="Generate Grid" onclick="btn()" />
+    <table >
+        <tbody id="grid" > </tbody>
+    </table>
+
+    <div id="avg"></div>
+
+    <script>
+
+        function randomNumber (min, max) 
+        {
+            return Math.floor(Math.random()*(max - min + 1))+min
+        }
+
+        function btn()
+        {
+            var avg = 0
+            var total = 0
+            var str = ''
+            var random = 0
+            num = parseInt(document.getElementById("num").value)
+
+            for (var i = 0; i < num; i++)
+            {
+                str += "<tr>"
+                for (var index = 0; index < num; index++)
+                {
+                    random = randomNumber(1, 100)
+                    avg += random
+                    str += `<th style='border:2px solid; padding:5px;`
+
+                    if (random % 3 == 0)
+                    {
+                        str += "background-color:red"
+                    }
+                    if (random % 2 == 0)
+                    {
+                        str += "background-color:blue"
+                    }
+                    str += "'> " + random + "</th>";
+                }
+                str += "</tr>"
+                total = avg / (num * num);
+            }
+
+            document.querySelector('#grid').innerHTML = str;
+
+            if(total == 0)
+            {
+                document.querySelector(`#avg`).innerHTML = "Please enter a number";  
+            }
+            else
+            {
+                document.querySelector(`#avg`).innerHTML = `<p>The average is ` + total + `</p>`;                
+            }
+            console.log(str)
+        }
+    </script>
+</body>
+</html>
